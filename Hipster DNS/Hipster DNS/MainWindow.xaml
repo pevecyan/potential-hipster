@@ -1,8 +1,85 @@
 ﻿<Window x:Class="Hipster_DNS.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Title="Hipster DNS" Height="350" Width="525" WindowStyle="None" AllowsTransparency="True" Background="{x:Null}" Icon="HipsterDnsIcon.png" ResizeMode="NoResize">
+    <Window.Resources>
+        <Storyboard x:Key="OnMouseEnterCloseButton">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="CloseButton">
+                <EasingColorKeyFrame KeyTime="0" Value="#FF2788D8"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF21649B">
+                    <EasingColorKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseIn"/>
+                    </EasingColorKeyFrame.EasingFunction>
+                </EasingColorKeyFrame>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="OnMouseLeaveCloseButton">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="CloseButton">
+                <EasingColorKeyFrame KeyTime="0" Value="#FF21649B"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF2788D8">
+                    <EasingColorKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseIn"/>
+                    </EasingColorKeyFrame.EasingFunction>
+                </EasingColorKeyFrame>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="OnMouseClickCloseButton">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="CloseButton">
+                <EasingColorKeyFrame KeyTime="0" Value="#FF21649B"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF1A466A">
+                    <EasingColorKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseIn"/>
+                    </EasingColorKeyFrame.EasingFunction>
+                </EasingColorKeyFrame>
+                <EasingColorKeyFrame KeyTime="0:0:0.4" Value="#FF21649B">
+                    <EasingColorKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseOut"/>
+                    </EasingColorKeyFrame.EasingFunction>
+                </EasingColorKeyFrame>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="CloseButton">
+            <BeginStoryboard x:Name="OnMouseEnterCloseButton_BeginStoryboard" Storyboard="{StaticResource OnMouseEnterCloseButton}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="CloseButton">
+            <BeginStoryboard x:Name="OnMouseLeaveCloseButton_BeginStoryboard" Storyboard="{StaticResource OnMouseLeaveCloseButton}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeftButtonDown" SourceName="CloseButton">
+            <BeginStoryboard x:Name="OnMouseLeaveCloseButton_BeginStoryboard1" Storyboard="{StaticResource OnMouseClickCloseButton}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid Margin="20" Background="#FFBFBFBF">
+        <Grid.Effect>
+            <DropShadowEffect BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="2"/>
+        </Grid.Effect>
+
+        <Grid x:Name="TopBarGrid" Margin="0" Background="#FF2788D8" Height="80" VerticalAlignment="Top">
+            <Path Data="M3.659,29.163c2.444,3.055,6.862,0,6.862,0s0.47,18.329,3.728,20.773s3.87-4.888,3.87-4.888s0.611,9.572,2.851,10.998
+		s5.295-4.684,5.295-4.684s0.407,7.535,5.295,7.535c0.132,0,0.254-0.039,0.373-0.091c0.118,0.052,0.24,0.091,0.372,0.091
+		c4.888,0,5.295-7.535,5.295-7.535s3.055,6.11,5.295,4.684c2.24-1.426,2.851-10.998,2.851-10.998s0.611,7.332,3.87,4.888
+		s3.728-20.773,3.728-20.773s4.418,3.055,6.862,0c2.224-2.781-5.283-8.619-6.65-9.646c1.705,0.487,2.628,0.992,2.628,0.992
+		c0.688-8.541-8.133-10.933-12.996-11.604c-0.892-0.154-1.839-0.241-2.823-0.255c-0.17-0.006-0.271-0.007-0.271-0.007
+		c-3.383,0-6.368,0.894-8.162,2.258c-1.795-1.364-4.779-2.258-8.162-2.258c0,0-0.101,0.001-0.271,0.007
+		c-0.983,0.014-1.931,0.101-2.823,0.255C15.813,9.576,6.992,11.969,7.68,20.509c0,0,0.923-0.505,2.628-0.992
+		C8.941,20.544,1.434,26.383,3.659,29.163z M22.35,19.108c4.058,0.714,7.482-1.883,9.582-3.25c2.1,1.367,5.524,3.964,9.582,3.25
+		c2.755-0.485,5.163-0.55,7.199-0.411c-1.704,0.593-3.309,2.145-7.244,3.338c-6.721,2.037-9.165,0.204-9.165,0.204
+		s-3.189,1.833-9.91-0.204c-3.935-1.192-5.54-2.745-7.244-3.338C17.187,18.558,19.596,18.623,22.35,19.108z" Fill="#FF366F9E" StrokeThickness="0" Stretch="Uniform" Width="50" Height="50" HorizontalAlignment="Left" Margin="15,0,0,0"></Path>
+
+            <Rectangle Fill="#FF1F6CAC" Height="1" Margin="0,75,0,0" VerticalAlignment="Bottom"/>
+            <Grid x:Name="CloseButton" HorizontalAlignment="Right" Height="20" Margin="0" VerticalAlignment="Top" Width="35" Background="#FF2788D8" MouseLeftButtonUp="CloseButton_MouseLeftButtonUp">
+                <Path Data="M301,223l114,114c13,13,13,33,0,46c-6,6-15,10-23,10s-17-4-23-10L255,269L141,383c-6,6-15,10-23,10s-17-4-23-10
+	c-13-13-13-33,0-46l114-114L95,109c-13-13-13-33,0-46s33-13,46,0l114,114L369,63c13-13,33-13,46,0s13,33,0,46L301,223z" StrokeThickness="0" Fill="White" Stretch="Uniform" Width="8" Height="8"></Path>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="80" VerticalAlignment="Top" Width="450" MouseDown="DragGrid_MouseDown" Background="Black" Opacity="0"/>
+            <Grid HorizontalAlignment="Left" Height="59" Margin="450,20,0,0" VerticalAlignment="Top" Width="35" MouseDown="DragGrid_MouseDown" Background="Black" Opacity="0"/>
+
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="230" Margin="0,80,0,0" VerticalAlignment="Top" Width="485" Background="#FFF2F5F7"/>
+
+
     </Grid>
+
+
 </Window>

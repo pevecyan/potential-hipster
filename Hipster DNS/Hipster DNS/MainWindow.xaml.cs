@@ -24,5 +24,24 @@ namespace Hipster_DNS
         {
             InitializeComponent();
         }
+
+        private void CloseButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void DragGrid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+
+        }
+
+        private void DragGrid(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        
     }
 }
