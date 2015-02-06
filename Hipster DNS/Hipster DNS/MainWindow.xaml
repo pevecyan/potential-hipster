@@ -153,6 +153,24 @@
         		</EasingDoubleKeyFrame>
         	</DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="OnMouseEnterNotificationButton">
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="NotificationButton">
+        		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF366D9A">
+        			<EasingColorKeyFrame.EasingFunction>
+        				<CubicEase EasingMode="EaseIn"/>
+        			</EasingColorKeyFrame.EasingFunction>
+        		</EasingColorKeyFrame>
+        	</ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="OnMouseLeaveNotificationButton">
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="NotificationButton">
+        		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF2784D2">
+        			<EasingColorKeyFrame.EasingFunction>
+        				<CubicEase EasingMode="EaseIn"/>
+        			</EasingColorKeyFrame.EasingFunction>
+        		</EasingColorKeyFrame>
+        	</ColorAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="CloseButton">
@@ -182,8 +200,11 @@
         <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="SettingsButtonGrid">
         	<BeginStoryboard x:Name="OnMouseLeaveSettingsButton_BeginStoryboard" Storyboard="{StaticResource OnMouseLeaveSettingsButton}"/>
         </EventTrigger>
-        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-        	<BeginStoryboard Storyboard="{StaticResource ShowNotificationGrid}"/>
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="NotificationButton">
+        	<BeginStoryboard x:Name="OnMouseEnterNotificationButton_BeginStoryboard" Storyboard="{StaticResource OnMouseEnterNotificationButton}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="NotificationButton">
+        	<BeginStoryboard x:Name="OnMouseLeaveNotificationButton_BeginStoryboard" Storyboard="{StaticResource OnMouseLeaveNotificationButton}"/>
         </EventTrigger>
     </Window.Triggers>
 	<Grid Margin="20" Background="#FFBFBFBF">
@@ -302,6 +323,9 @@
 				<Path Data="M11.6,119H116c7.3,0,12-7.7,8.7-14.2L72.5,12.3c-3.6-7.2-13.9-7.2-17.5,0L2.8,104.8C-0.4,111.3,4.3,119,11.6,119z M72,97.5  c0,4.8-3.5,8.5-8.5,8.5s-8.5-3.7-8.5-8.5v-0.2c0-4.8,3.5-8.5,8.5-8.5s8.5,3.7,8.5,8.5V97.5z M58.9,35h9.8c2.7,0,4.3,2.3,4,5.2  l-4.3,37.6c-0.3,2.7-2.1,4.4-4.6,4.4s-4.3-1.7-4.6-4.4l-4.3-37.6C54.6,37.3,56.2,35,58.9,35z" Fill="#FF2786D5" HorizontalAlignment="Center" Width="70" Height="70" VerticalAlignment="Top" StrokeThickness="0" Stretch="Uniform" Margin="0,40,0,0"/>
 				<TextBlock HorizontalAlignment="Left" Height="59.333" Margin="17.333,124.667,0,0" TextWrapping="Wrap" Text="required hipster permissions" VerticalAlignment="Top" Foreground="#FF366E9C" FontFamily="Segoe UI Semibold" FontSize="24" SnapsToDevicePixels="True" TextAlignment="Center"/>
 				<TextBlock HorizontalAlignment="Left" Margin="17.333,159.36,0,0" TextWrapping="Wrap" Text="*administrator" VerticalAlignment="Top" Foreground="#FF2786D5" FontFamily="Segoe UI Semibold" FontSize="8" TextAlignment="Center"/>
+				<Grid x:Name="NotificationButton" HorizontalAlignment="Center" Height="28" Margin="0,0,0,20" VerticalAlignment="Bottom" Width="145" Background="#FF2784D2" MouseLeftButtonUp="NotificationButton_MouseLeftButtonUp">
+					<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" Text="Start as administrator" Foreground="#FFEAEDEF" TextAlignment="Center" Margin="0,0,0,1"/>
+				</Grid>
 			</Grid>
 		</Grid>
 

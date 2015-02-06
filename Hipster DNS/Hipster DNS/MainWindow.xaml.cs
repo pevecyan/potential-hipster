@@ -1,7 +1,9 @@
 ﻿using Hipster_DNS.Handlers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
@@ -171,6 +173,28 @@ namespace Hipster_DNS
             Properties.Settings.Default["Adapter"] = SelectedAdapterTextBlock.Text;
             
             Properties.Settings.Default.Save();
+        }
+
+        private void NotificationButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var processInfo = new ProcessStartInfo(Assembly.GetExecutingAssembly().CodeBase);
+
+            // The following properties run the new process as administrator
+            processInfo.UseShellExecute = true;
+            processInfo.Verb = "runas";
+
+            // Start the new process
+            try
+            {
+                Process.Start(processInfo);
+            }
+            catch (Exception)
+            {
+                // The user did not allow the application to run as administrator
+                MessageBox.Show("Sorry, but I don't seem to be able to start " +
+                   "this program with administrator rights!");
+            }
+            this.Close();
         }
     }
 }
