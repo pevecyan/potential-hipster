@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Hipster_DNS.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Hipster DNS" Height="350" Width="400" WindowStyle="None" AllowsTransparency="True" Background="{x:Null}" Icon="HipsterDnsIcon.png" ResizeMode="NoResize">
+        Title="Hipster DNS" Height="365" Width="400" WindowStyle="None" AllowsTransparency="True" Background="{x:Null}" Icon="HipsterDnsIcon.png" ResizeMode="NoResize">
     <Window.Resources>
         <Storyboard x:Key="OnMouseEnterCloseButton">
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="CloseButton">
@@ -38,6 +38,61 @@
                 </EasingColorKeyFrame>
             </ColorAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="OnMouseEnterResetButton">
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="ResetButton">
+        		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF1E3B53">
+        			<EasingColorKeyFrame.EasingFunction>
+        				<CircleEase EasingMode="EaseIn"/>
+        			</EasingColorKeyFrame.EasingFunction>
+        		</EasingColorKeyFrame>
+        	</ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="OnMouseLeaveResetButton">
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="ResetButton">
+        		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF366F9E">
+        			<EasingColorKeyFrame.EasingFunction>
+        				<CircleEase EasingMode="EaseIn"/>
+        			</EasingColorKeyFrame.EasingFunction>
+        		</EasingColorKeyFrame>
+        	</ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="OnMouseEnterApplyButton">
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="ApplyButton">
+        		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF1C5380">
+        			<EasingColorKeyFrame.EasingFunction>
+        				<CircleEase EasingMode="EaseIn"/>
+        			</EasingColorKeyFrame.EasingFunction>
+        		</EasingColorKeyFrame>
+        	</ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="OnMouseLeaveApplyButton">
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="ApplyButton">
+        		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF2788D8">
+        			<EasingColorKeyFrame.EasingFunction>
+        				<CircleEase EasingMode="EaseIn"/>
+        			</EasingColorKeyFrame.EasingFunction>
+        		</EasingColorKeyFrame>
+        	</ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="HideAdaptersList">
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="AdaptersListGrid">
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+        			<EasingDoubleKeyFrame.EasingFunction>
+        				<QuarticEase EasingMode="EaseInOut"/>
+        			</EasingDoubleKeyFrame.EasingFunction>
+        		</EasingDoubleKeyFrame>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="ShowAdaptersList">
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="AdaptersListGrid">
+        		
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="150">
+        			<EasingDoubleKeyFrame.EasingFunction>
+        				<QuarticEase EasingMode="EaseInOut"/>
+        			</EasingDoubleKeyFrame.EasingFunction>
+        		</EasingDoubleKeyFrame>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="CloseButton">
@@ -48,6 +103,18 @@
         </EventTrigger>
         <EventTrigger RoutedEvent="UIElement.MouseLeftButtonDown" SourceName="CloseButton">
             <BeginStoryboard x:Name="OnMouseLeaveCloseButton_BeginStoryboard1" Storyboard="{StaticResource OnMouseClickCloseButton}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="ResetButton">
+        	<BeginStoryboard x:Name="OnMouseEnterResetButton_BeginStoryboard" Storyboard="{StaticResource OnMouseEnterResetButton}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="ResetButton">
+        	<BeginStoryboard x:Name="OnMouseLeaveResetButton_BeginStoryboard" Storyboard="{StaticResource OnMouseLeaveResetButton}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="ApplyButton">
+        	<BeginStoryboard x:Name="OnMouseEnterApplyButton_BeginStoryboard" Storyboard="{StaticResource OnMouseEnterApplyButton}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="ApplyButton">
+        	<BeginStoryboard x:Name="OnMouseLeaveApplyButton_BeginStoryboard" Storyboard="{StaticResource OnMouseLeaveApplyButton}"/>
         </EventTrigger>
     </Window.Triggers>
     <Grid Margin="20" Background="#FFBFBFBF">
@@ -76,9 +143,11 @@
             <Grid HorizontalAlignment="Right" Height="59" Margin="0,20,0,0" VerticalAlignment="Top" Width="35" MouseDown="DragGrid_MouseDown" Background="Black" Opacity="0"/>
 
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="230" Margin="0,80,0,0" VerticalAlignment="Top" Width="360" Background="#FFF2F5F7">
+        <Grid HorizontalAlignment="Left" Height="245" Margin="0,80,0,0" VerticalAlignment="Top" Width="360" Background="#FFF2F5F7">
         	<Grid HorizontalAlignment="Left" Height="210" Margin="10,10,0,0" VerticalAlignment="Top" Width="340">
-        		<Grid Height="30" Margin="95,15,15,0" VerticalAlignment="Top" Background="#FF366F9E"/>
+        		<Grid x:Name="AdapterGrid" Height="30" Margin="95,15,15,0" VerticalAlignment="Top" Background="#FF366F9E" MouseLeftButtonUp="AdapterGrid_MouseLeftButtonUp">
+        			<TextBlock x:Name="SelectedAdapterTextBlock" Margin="10,0" TextWrapping="Wrap" VerticalAlignment="Center" Text="/" FontSize="13.333" Foreground="#FFF2F5F7" FontFamily="Segoe UI Semibold" TextAlignment="Center" Height="18"/>
+        		</Grid>
         		<Grid HorizontalAlignment="Left" Height="30" Margin="15,15,0,0" VerticalAlignment="Top" Width="80" Background="#FF2788D8">
         			<TextBlock Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Text="Adapter" FontSize="13.333" Foreground="#FFF2F5F7" HorizontalAlignment="Center" FontFamily="Segoe UI Semibold"/>
         		</Grid>
@@ -89,10 +158,10 @@
         				<ColumnDefinition/>
         				<ColumnDefinition/>
         			</Grid.ColumnDefinitions>
-        			<TextBox TextWrapping="Wrap" Text="0" BorderThickness="0" Background="#FF366F9E" Foreground="White" VerticalAlignment="Center" Margin="5,0,10,0" FontFamily="Segoe UI Semibold" FontSize="13.333" CaretBrush="#FFD41B1B" SelectionBrush="#FFD41B1B" TextAlignment="Center"/>
-        			<TextBox TextWrapping="Wrap" Text="0" BorderThickness="0" Background="#FF366F9E" Foreground="White" VerticalAlignment="Center" Margin="5,6.133,10,6.133" FontFamily="Segoe UI Semibold" FontSize="13.333" CaretBrush="#FFD41B1B" SelectionBrush="#FFD41B1B" Grid.Column="1" TextAlignment="Center"/>
-        			<TextBox TextWrapping="Wrap" Text="0" BorderThickness="0" Background="#FF366F9E" Foreground="White" VerticalAlignment="Center" Margin="5,6.133,10,6.133" FontFamily="Segoe UI Semibold" FontSize="13.333" CaretBrush="#FFD41B1B" SelectionBrush="#FFD41B1B" Grid.Column="2" TextAlignment="Center"/>
-        			<TextBox TextWrapping="Wrap" Text="0" BorderThickness="0" Background="#FF366F9E" Foreground="White" VerticalAlignment="Center" Margin="5,6.133,10,6.133" FontFamily="Segoe UI Semibold" FontSize="13.333" CaretBrush="#FFD41B1B" SelectionBrush="#FFD41B1B" Grid.Column="3" TextAlignment="Center"/>
+        			<TextBox x:Name="ip11" TextWrapping="Wrap" Text="0" BorderThickness="0" Background="#FF366F9E" Foreground="White" VerticalAlignment="Center" Margin="5,0,10,0" FontFamily="Segoe UI Semibold" FontSize="13.333" CaretBrush="#FFD41B1B" SelectionBrush="#FFD41B1B" TextAlignment="Center" TextChanged="ip11_TextChanged"/>
+        			<TextBox x:Name="ip12" TextWrapping="Wrap" Text="0" BorderThickness="0" Background="#FF366F9E" Foreground="White" VerticalAlignment="Center" Margin="5,6.133,10,6.133" FontFamily="Segoe UI Semibold" FontSize="13.333" CaretBrush="#FFD41B1B" SelectionBrush="#FFD41B1B" Grid.Column="1" TextAlignment="Center"/>
+        			<TextBox x:Name="ip13" TextWrapping="Wrap" Text="0" BorderThickness="0" Background="#FF366F9E" Foreground="White" VerticalAlignment="Center" Margin="5,6.133,10,6.133" FontFamily="Segoe UI Semibold" FontSize="13.333" CaretBrush="#FFD41B1B" SelectionBrush="#FFD41B1B" Grid.Column="2" TextAlignment="Center"/>
+        			<TextBox x:Name="ip14" TextWrapping="Wrap" Text="0" BorderThickness="0" Background="#FF366F9E" Foreground="White" VerticalAlignment="Center" Margin="5,6.133,10,6.133" FontFamily="Segoe UI Semibold" FontSize="13.333" CaretBrush="#FFD41B1B" SelectionBrush="#FFD41B1B" Grid.Column="3" TextAlignment="Center"/>
         			<TextBlock Margin="54.283,6.133,0,6.133" TextWrapping="Wrap" VerticalAlignment="Center" Text="." FontSize="13.333" Foreground="#FFF2F5F7" HorizontalAlignment="Center" FontFamily="Segoe UI Semibold"/>
         			<TextBlock Margin="54.283,6.133,0,6.133" TextWrapping="Wrap" VerticalAlignment="Center" Text="." FontSize="13.333" Foreground="#FFF2F5F7" HorizontalAlignment="Center" FontFamily="Segoe UI Semibold" Grid.Column="1"/>
         			<TextBlock Margin="54.283,6.133,0,6.133" TextWrapping="Wrap" VerticalAlignment="Center" Text="." FontSize="13.333" Foreground="#FFF2F5F7" HorizontalAlignment="Center" FontFamily="Segoe UI Semibold" Grid.Column="2"/>
@@ -110,19 +179,28 @@
         				<ColumnDefinition/>
         				<ColumnDefinition/>
         			</Grid.ColumnDefinitions>
-        			<TextBox TextWrapping="Wrap" Text="0" BorderThickness="0" Background="#FF366F9E" Foreground="White" VerticalAlignment="Center" Margin="5,0,10,0" FontFamily="Segoe UI Semibold" FontSize="13.333" CaretBrush="#FFD41B1B" SelectionBrush="#FFD41B1B" TextAlignment="Center"/>
-        			<TextBox TextWrapping="Wrap" Text="0" BorderThickness="0" Background="#FF366F9E" Foreground="White" VerticalAlignment="Center" Margin="5,6.133,10,6.133" FontFamily="Segoe UI Semibold" FontSize="13.333" CaretBrush="#FFD41B1B" SelectionBrush="#FFD41B1B" Grid.Column="1" TextAlignment="Center"/>
-        			<TextBox TextWrapping="Wrap" Text="0" BorderThickness="0" Background="#FF366F9E" Foreground="White" VerticalAlignment="Center" Margin="5,6.133,10,6.133" FontFamily="Segoe UI Semibold" FontSize="13.333" CaretBrush="#FFD41B1B" SelectionBrush="#FFD41B1B" Grid.Column="2" TextAlignment="Center"/>
-        			<TextBox TextWrapping="Wrap" Text="0" BorderThickness="0" Background="#FF366F9E" Foreground="White" VerticalAlignment="Center" Margin="5,6.133,10,6.133" FontFamily="Segoe UI Semibold" FontSize="13.333" CaretBrush="#FFD41B1B" SelectionBrush="#FFD41B1B" Grid.Column="3" TextAlignment="Center"/>
+        			<TextBox x:Name="ip21" TextWrapping="Wrap" Text="0" BorderThickness="0" Background="#FF366F9E" Foreground="White" VerticalAlignment="Center" Margin="5,0,10,0" FontFamily="Segoe UI Semibold" FontSize="13.333" CaretBrush="#FFD41B1B" SelectionBrush="#FFD41B1B" TextAlignment="Center"/>
+        			<TextBox x:Name="ip22" TextWrapping="Wrap" Text="0" BorderThickness="0" Background="#FF366F9E" Foreground="White" VerticalAlignment="Center" Margin="5,6.133,10,6.133" FontFamily="Segoe UI Semibold" FontSize="13.333" CaretBrush="#FFD41B1B" SelectionBrush="#FFD41B1B" Grid.Column="1" TextAlignment="Center"/>
+        			<TextBox x:Name="ip23" TextWrapping="Wrap" Text="0" BorderThickness="0" Background="#FF366F9E" Foreground="White" VerticalAlignment="Center" Margin="5,6.133,10,6.133" FontFamily="Segoe UI Semibold" FontSize="13.333" CaretBrush="#FFD41B1B" SelectionBrush="#FFD41B1B" Grid.Column="2" TextAlignment="Center"/>
+        			<TextBox x:Name="ip24" TextWrapping="Wrap" Text="0" BorderThickness="0" Background="#FF366F9E" Foreground="White" VerticalAlignment="Center" Margin="5,6.133,10,6.133" FontFamily="Segoe UI Semibold" FontSize="13.333" CaretBrush="#FFD41B1B" SelectionBrush="#FFD41B1B" Grid.Column="3" TextAlignment="Center"/>
         			<TextBlock Margin="54.283,6.133,0,6.133" TextWrapping="Wrap" VerticalAlignment="Center" Text="." FontSize="13.333" Foreground="#FFF2F5F7" HorizontalAlignment="Center" FontFamily="Segoe UI Semibold"/>
         			<TextBlock Margin="54.283,6.133,0,6.133" TextWrapping="Wrap" VerticalAlignment="Center" Text="." FontSize="13.333" Foreground="#FFF2F5F7" HorizontalAlignment="Center" FontFamily="Segoe UI Semibold" Grid.Column="1"/>
         			<TextBlock Margin="54.283,6.133,0,6.133" TextWrapping="Wrap" VerticalAlignment="Center" Text="." FontSize="13.333" Foreground="#FFF2F5F7" HorizontalAlignment="Center" FontFamily="Segoe UI Semibold" Grid.Column="2"/>
         		</Grid>
-        		<Grid HorizontalAlignment="Left" Height="30" Margin="235,170,0,0" VerticalAlignment="Top" Width="90" Background="#FF2788D8">
+        		<Grid x:Name="ApplyButton" HorizontalAlignment="Left" Height="30" Margin="235,170,0,0" VerticalAlignment="Top" Width="90" Background="#FF2788D8" MouseLeftButtonUp="ApplyButton_MouseLeftButtonUp">
         			<TextBlock Margin="0,0,0,3" TextWrapping="Wrap" VerticalAlignment="Center" Text="Apply" FontSize="13.333" Foreground="#FFF2F5F7" HorizontalAlignment="Center" FontFamily="Segoe UI Semibold"/>
         		</Grid>
-        		<Grid HorizontalAlignment="Left" Height="30" Margin="15,170,0,0" VerticalAlignment="Top" Width="90" Background="#FF366F9E">
+        		<Grid x:Name="ResetButton" HorizontalAlignment="Left" Height="30" Margin="15,170,0,0" VerticalAlignment="Top" Width="90" Background="#FF366F9E" MouseLeftButtonUp="ResetButton_MouseLeftButtonUp">
         			<TextBlock Margin="0,0,0,3" TextWrapping="Wrap" VerticalAlignment="Center" Text="Reset" FontSize="13.333" Foreground="#FFF2F5F7" HorizontalAlignment="Center" FontFamily="Segoe UI Semibold"/>
+        		</Grid>
+        		<Grid x:Name="AdaptersListGrid" HorizontalAlignment="Left" Height="0" Margin="95,45,0,0" VerticalAlignment="Top" Width="230" Background="#FF366F9E">
+        			<Grid.Effect>
+        				<DropShadowEffect Direction="270" RenderingBias="Quality" Opacity="0.4"/>
+        			</Grid.Effect>
+        			<Rectangle Fill="Black" Height="1" VerticalAlignment="Top" Opacity="0.3"/>
+        			<ScrollViewer HorizontalAlignment="Left" Height="150" VerticalAlignment="Top" Width="230" VerticalScrollBarVisibility="Auto" Margin="0,1,0,0">
+        				<StackPanel x:Name="AdpatersStackPanel"/>
+        			</ScrollViewer>
         		</Grid>
         	</Grid>
         </Grid>

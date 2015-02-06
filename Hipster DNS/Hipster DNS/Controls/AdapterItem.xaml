@@ -1,0 +1,42 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="Hipster_DNS.AdapterItem"
+	x:Name="UserControl"
+	d:DesignWidth="640" d:DesignHeight="480" Width="230" Height="40">
+	<UserControl.Resources>
+		<Storyboard x:Key="OnMouseEnter">
+			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="LayoutRoot">
+				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF2788D8"/>
+			</ColorAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Key="OnMouseLeave">
+			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="LayoutRoot">
+				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF366F9E"/>
+			</ColorAnimationUsingKeyFrames>
+		</Storyboard>
+	</UserControl.Resources>
+	<UserControl.Triggers>
+		<EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="LayoutRoot">
+			<BeginStoryboard x:Name="OnMouseEnter_BeginStoryboard" Storyboard="{StaticResource OnMouseEnter}"/>
+		</EventTrigger>
+		<EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="LayoutRoot">
+			<BeginStoryboard x:Name="OnMouseLeave_BeginStoryboard" Storyboard="{StaticResource OnMouseLeave}"/>
+		</EventTrigger>
+	</UserControl.Triggers>
+
+	<Grid x:Name="LayoutRoot" Width="230" Height="40" Background="#FF366F9E" MouseLeftButtonUp="LayoutRoot_MouseLeftButtonUp">
+		<TextBlock x:Name="AdapterNameTextBlock" Margin="10,0,0,0" TextWrapping="Wrap" FontSize="13.333" FontFamily="Segoe UI Semilight" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Height="18">
+			<TextBlock.RenderTransform>
+				<TransformGroup>
+					<ScaleTransform/>
+					<SkewTransform AngleX="0.765"/>
+					<RotateTransform/>
+					<TranslateTransform X="0.237"/>
+				</TransformGroup>
+			</TextBlock.RenderTransform><Run Text="Name"/><LineBreak/><Run/></TextBlock>
+	</Grid>
+</UserControl>
