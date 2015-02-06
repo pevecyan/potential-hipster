@@ -85,17 +85,45 @@ namespace Hipster_DNS
 		
 		/*IPs events*/
 
-        private void ip11_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+
+        private void ipInput_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            if (ip11.Text.Length >= 3) { ip12.Focus(); }
-            if (ip11.Text.Length > 3)
+            TextBox input = sender as TextBox;
+
+            if (input.Text.Length >= 3)
             {
-                ip11.Text = ip11.Text.Substring(0, 3);
+                if (sender == ip11) { ip12.Focus(); }
+                if (sender == ip12) { ip13.Focus(); }
+                if (sender == ip13) { ip14.Focus(); }
+                if (sender == ip14) { ip21.Focus(); }
+
+                if (sender == ip22) { ip23.Focus(); }
+                if (sender == ip21) { ip22.Focus(); }
+                if (sender == ip23) { ip24.Focus(); }
+                
+            }
+            if (input.Text.Length > 3){input.Text = input.Text.Substring(0, 3);}
+            int number;
+            if (input.Text.Length > 0)
+            {
+                if(int.TryParse(input.Text, out number))
+                {
+                    if (number > 255)
+                    {
+                        input.Text = "255";
+                    }
+                }
+                else
+                {
+                    input.Text = "0";
+                }
             }
         }
 
-      
-
-        
+        private void ipInput_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox input = sender as TextBox;
+            input.SelectAll();
+        }
     }
 }
