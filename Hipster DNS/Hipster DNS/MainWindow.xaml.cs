@@ -43,6 +43,26 @@ namespace Hipster_DNS
             {
                 AdpatersStackPanel.Children.Add(new AdapterItem() {AdapterName = adapter, setAdapter = SetAdapter});
             }
+
+            if ((string)Properties.Settings.Default["Adapter"] == "/")
+            {
+                Properties.Settings.Default["Adapter"] = SelectedAdapterTextBlock.Text;
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                SelectedAdapterTextBlock.Text = (string)Properties.Settings.Default["Adapter"];
+            }
+
+            ip11.Text = ((string)Properties.Settings.Default["DNS1"]).Split('.')[0];
+            ip12.Text = ((string)Properties.Settings.Default["DNS1"]).Split('.')[1];
+            ip13.Text = ((string)Properties.Settings.Default["DNS1"]).Split('.')[2];
+            ip14.Text = ((string)Properties.Settings.Default["DNS1"]).Split('.')[3];
+
+            ip21.Text = ((string)Properties.Settings.Default["DNS2"]).Split('.')[0];
+            ip24.Text = ((string)Properties.Settings.Default["DNS2"]).Split('.')[3];
+            ip22.Text = ((string)Properties.Settings.Default["DNS2"]).Split('.')[1];
+            ip23.Text = ((string)Properties.Settings.Default["DNS2"]).Split('.')[2];
             
         }
 
@@ -85,6 +105,15 @@ namespace Hipster_DNS
         private void ResetButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             NetshHandler.ResetDNS(SelectedAdapterTextBlock.Text);
+            ip11.Text = "0";
+            ip12.Text = "0";
+            ip13.Text = "0";
+            ip14.Text = "0";
+
+            ip21.Text = "0";
+            ip22.Text = "0";
+            ip23.Text = "0";
+            ip24.Text = "0";
         }
 		
 		/*IPs events*/
@@ -134,6 +163,15 @@ namespace Hipster_DNS
         {
             if (settingsOpen) (this.FindResource("HideSettings") as Storyboard).Begin();
             else (this.FindResource("ShowSettings") as Storyboard).Begin();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Properties.Settings.Default["DNS1"] = ip11.Text + "." + ip12.Text + "." + ip13.Text + "." + ip14.Text;
+            Properties.Settings.Default["DNS2"] = ip21.Text + "." + ip22.Text + "." + ip23.Text + "." + ip24.Text;
+            Properties.Settings.Default["Adapter"] = SelectedAdapterTextBlock.Text;
+            
+            Properties.Settings.Default.Save();
         }
     }
 }
