@@ -1,1 +1,1 @@
-# potential-hipster
+# Hipster DNS
