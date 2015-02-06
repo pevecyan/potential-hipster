@@ -274,6 +274,7 @@
 						<TranslateTransform X="400"/>
 					</TransformGroup>
 				</Grid.RenderTransform>
+				<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="blank" VerticalAlignment="Center" TextAlignment="Center" Foreground="#FF2788D8" FontSize="21.333"/>
 			</Grid>
 		</Grid>
 

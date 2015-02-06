@@ -58,5 +58,17 @@ namespace Hipster_DNS.Properties {
                 this["Adapter"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Autoset {
+            get {
+                return ((bool)(this["Autoset"]));
+            }
+            set {
+                this["Autoset"] = value;
+            }
+        }
     }
 }
