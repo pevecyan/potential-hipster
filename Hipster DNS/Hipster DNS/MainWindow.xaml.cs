@@ -105,15 +105,7 @@ namespace Hipster_DNS
         private void ResetButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             NetshHandler.ResetDNS(SelectedAdapterTextBlock.Text);
-            ip11.Text = "0";
-            ip12.Text = "0";
-            ip13.Text = "0";
-            ip14.Text = "0";
-
-            ip21.Text = "0";
-            ip22.Text = "0";
-            ip23.Text = "0";
-            ip24.Text = "0";
+            
         }
 		
 		/*IPs events*/
