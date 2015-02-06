@@ -26,12 +26,16 @@ namespace Hipster_DNS
         bool adaptersListOpen;
         List<string> adapters;
 
+        bool settingsOpen;
+
         public MainWindow()
         {
             InitializeComponent();
 
             (this.FindResource("ShowAdaptersList") as Storyboard).Completed += delegate { adaptersListOpen = true; };
             (this.FindResource("HideAdaptersList") as Storyboard).Completed += delegate { adaptersListOpen = false; };
+            (this.FindResource("ShowSettings") as Storyboard).Completed += delegate { settingsOpen = true; };
+            (this.FindResource("HideSettings") as Storyboard).Completed += delegate { settingsOpen = false; };
 
             adapters = NetshHandler.GetAdapters();
             SelectedAdapterTextBlock.Text = adapters[0];
@@ -124,6 +128,12 @@ namespace Hipster_DNS
         {
             TextBox input = sender as TextBox;
             input.SelectAll();
+        }
+
+        private void SettingsButtonGrid_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (settingsOpen) (this.FindResource("HideSettings") as Storyboard).Begin();
+            else (this.FindResource("ShowSettings") as Storyboard).Begin();
         }
     }
 }
