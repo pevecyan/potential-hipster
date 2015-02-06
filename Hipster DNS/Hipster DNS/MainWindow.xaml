@@ -144,6 +144,15 @@
         		</EasingDoubleKeyFrame>
         	</DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="ShowNotificationGrid">
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="NotificationGrid">
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+        			<EasingDoubleKeyFrame.EasingFunction>
+        				<CubicEase EasingMode="EaseInOut"/>
+        			</EasingDoubleKeyFrame.EasingFunction>
+        		</EasingDoubleKeyFrame>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="CloseButton">
@@ -173,6 +182,9 @@
         <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="SettingsButtonGrid">
         	<BeginStoryboard x:Name="OnMouseLeaveSettingsButton_BeginStoryboard" Storyboard="{StaticResource OnMouseLeaveSettingsButton}"/>
         </EventTrigger>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+        	<BeginStoryboard Storyboard="{StaticResource ShowNotificationGrid}"/>
+        </EventTrigger>
     </Window.Triggers>
 	<Grid Margin="20" Background="#FFBFBFBF">
 		<Grid.Effect>
@@ -197,6 +209,8 @@
 			<Grid.Clip>
 				<RectangleGeometry Rect="0,0,360,245"/>
 			</Grid.Clip>
+
+
 			<Grid x:Name="MainGrid" HorizontalAlignment="Center" Height="210" Margin="10,10,10,0" VerticalAlignment="Top" Width="340" RenderTransformOrigin="0.5,0.5">
 				<Grid.RenderTransform>
 					<TransformGroup>
@@ -275,6 +289,19 @@
 					</TransformGroup>
 				</Grid.RenderTransform>
 				<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="blank" VerticalAlignment="Center" TextAlignment="Center" Foreground="#FF2788D8" FontSize="21.333"/>
+			</Grid>
+			<Grid x:Name="NotificationGrid" Background="#FFEEF1F3" Height="245" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+				<Grid.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform/>
+						<RotateTransform/>
+						<TranslateTransform Y="-245"/>
+					</TransformGroup>
+				</Grid.RenderTransform>
+				<Path Data="M11.6,119H116c7.3,0,12-7.7,8.7-14.2L72.5,12.3c-3.6-7.2-13.9-7.2-17.5,0L2.8,104.8C-0.4,111.3,4.3,119,11.6,119z M72,97.5  c0,4.8-3.5,8.5-8.5,8.5s-8.5-3.7-8.5-8.5v-0.2c0-4.8,3.5-8.5,8.5-8.5s8.5,3.7,8.5,8.5V97.5z M58.9,35h9.8c2.7,0,4.3,2.3,4,5.2  l-4.3,37.6c-0.3,2.7-2.1,4.4-4.6,4.4s-4.3-1.7-4.6-4.4l-4.3-37.6C54.6,37.3,56.2,35,58.9,35z" Fill="#FF2786D5" HorizontalAlignment="Center" Width="70" Height="70" VerticalAlignment="Top" StrokeThickness="0" Stretch="Uniform" Margin="0,40,0,0"/>
+				<TextBlock HorizontalAlignment="Left" Height="59.333" Margin="17.333,124.667,0,0" TextWrapping="Wrap" Text="required hipster permissions" VerticalAlignment="Top" Foreground="#FF366E9C" FontFamily="Segoe UI Semibold" FontSize="24" SnapsToDevicePixels="True" TextAlignment="Center"/>
+				<TextBlock HorizontalAlignment="Left" Margin="17.333,159.36,0,0" TextWrapping="Wrap" Text="*administrator" VerticalAlignment="Top" Foreground="#FF2786D5" FontFamily="Segoe UI Semibold" FontSize="8" TextAlignment="Center"/>
 			</Grid>
 		</Grid>
 

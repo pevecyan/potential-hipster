@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -31,6 +32,12 @@ namespace Hipster_DNS
         public MainWindow()
         {
             InitializeComponent();
+
+            if (!new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator))
+            {
+                (this.FindResource("ShowNotificationGrid") as Storyboard).Begin();
+                //this.Close();
+            }
 
             (this.FindResource("ShowAdaptersList") as Storyboard).Completed += delegate { adaptersListOpen = true; };
             (this.FindResource("HideAdaptersList") as Storyboard).Completed += delegate { adaptersListOpen = false; };
