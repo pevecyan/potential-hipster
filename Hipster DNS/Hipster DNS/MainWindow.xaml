@@ -1,7 +1,7 @@
 ﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" xmlns:ee="http://schemas.microsoft.com/expression/2010/effects" x:Class="Hipster_DNS.MainWindow"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" xmlns:ee="http://schemas.microsoft.com/expression/2010/effects" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="Hipster_DNS.MainWindow"
         Title="Hipster DNS" Height="365" Width="400" WindowStyle="None" AllowsTransparency="True" Background="{x:Null}" Icon="HipsterDnsIcon.png" ResizeMode="NoResize" Closing="Window_Closing" Opacity="0.98">
     <Window.Resources>
         <Storyboard x:Key="OnMouseEnterCloseButton">
@@ -219,6 +219,9 @@
 			<Grid x:Name="CloseButton" HorizontalAlignment="Right" Height="20" Margin="0" VerticalAlignment="Top" Width="35" Background="#FF2788D8" MouseLeftButtonUp="CloseButton_MouseLeftButtonUp">
 				<Path Data="M301,223l114,114c13,13,13,33,0,46c-6,6-15,10-23,10s-17-4-23-10L255,269L141,383c-6,6-15,10-23,10s-17-4-23-10  c-13-13-13-33,0-46l114-114L95,109c-13-13-13-33,0-46s33-13,46,0l114,114L369,63c13-13,33-13,46,0s13,33,0,46L301,223z" StrokeThickness="0" Fill="White" Stretch="Uniform" Width="8" Height="8"/>
 			</Grid>
+			<Grid HorizontalAlignment="Left" Height="60" Margin="70,10,0,0" VerticalAlignment="Top" Width="250">
+				<TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="Hipster DNS" VerticalAlignment="Center" Foreground="#FF366E9C" FontSize="29.333" FontWeight="Bold"/>
+			</Grid>
 			<Grid HorizontalAlignment="Left" Height="80" VerticalAlignment="Top" Width="325" MouseDown="DragGrid_MouseDown" Background="Black" Opacity="0"/>
 			<Grid HorizontalAlignment="Right" Height="24" Margin="0,20,0,0" VerticalAlignment="Top" Width="35" MouseDown="DragGrid_MouseDown" Background="Black" Opacity="0"/>
 			<Grid x:Name="SettingsButtonGrid" HorizontalAlignment="Right" Height="35" Margin="0,0,0,1" VerticalAlignment="Bottom" Width="35" Background="#FF2788D8" MouseLeftButtonUp="SettingsButtonGrid_MouseLeftButtonUp">
@@ -311,7 +314,7 @@
 				</Grid.RenderTransform>
 				<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="blank" VerticalAlignment="Center" TextAlignment="Center" Foreground="#FF2788D8" FontSize="21.333"/>
 			</Grid>
-			<Grid x:Name="NotificationGrid" Background="#FFEEF1F3" Height="245" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+			<Grid x:Name="NotificationGrid" Background="#FFEEF1F3" Height="245" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" d:IsHidden="True">
 				<Grid.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>

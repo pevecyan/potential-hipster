@@ -72,7 +72,8 @@ namespace Hipster_DNS
             ip24.Text = ((string)Properties.Settings.Default["DNS2"]).Split('.')[3];
             ip22.Text = ((string)Properties.Settings.Default["DNS2"]).Split('.')[1];
             ip23.Text = ((string)Properties.Settings.Default["DNS2"]).Split('.')[2];
-            
+
+            SelectedAdapterTextBlock.Focus();
         }
 
         private void SetAdapter(string adapterName)
