@@ -171,6 +171,24 @@
         		</EasingColorKeyFrame>
         	</ColorAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="ShowMessageBox">
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="MessageBoxGrid">
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+        			<EasingDoubleKeyFrame.EasingFunction>
+        				<CubicEase EasingMode="EaseInOut"/>
+        			</EasingDoubleKeyFrame.EasingFunction>
+        		</EasingDoubleKeyFrame>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="HideMessageBox">
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="MessageBoxGrid">
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-245">
+        			<EasingDoubleKeyFrame.EasingFunction>
+        				<CubicEase EasingMode="EaseInOut"/>
+        			</EasingDoubleKeyFrame.EasingFunction>
+        		</EasingDoubleKeyFrame>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="CloseButton">
@@ -314,7 +332,7 @@
 				</Grid.RenderTransform>
 				<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="blank" VerticalAlignment="Center" TextAlignment="Center" Foreground="#FF2788D8" FontSize="21.333"/>
 			</Grid>
-			<Grid x:Name="NotificationGrid" Background="#FFEEF1F3" Height="245" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" d:IsHidden="True">
+			<Grid x:Name="NotificationGrid" Background="#FFEEF1F3" Height="245" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
 				<Grid.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -328,6 +346,25 @@
 				<TextBlock HorizontalAlignment="Left" Margin="17.333,159.36,0,0" TextWrapping="Wrap" Text="*administrator" VerticalAlignment="Top" Foreground="#FF2786D5" FontFamily="Segoe UI Semibold" FontSize="8" TextAlignment="Center"/>
 				<Grid x:Name="NotificationButton" HorizontalAlignment="Center" Height="28" Margin="0,0,0,20" VerticalAlignment="Bottom" Width="145" Background="#FF2784D2" MouseLeftButtonUp="NotificationButton_MouseLeftButtonUp">
 					<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" Text="Start as administrator" Foreground="#FFEAEDEF" TextAlignment="Center" Margin="0,0,0,1"/>
+				</Grid>
+			</Grid>
+			<Grid x:Name="MessageBoxGrid" Background="#FFEEF1F3" Height="245" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+				<Grid.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform/>
+						<RotateTransform/>
+						<TranslateTransform Y="-245"/>
+					</TransformGroup>
+				</Grid.RenderTransform>
+				<Path Data="M434.539,98.499l-38.828-38.828c-5.324-5.328-11.799-7.993-19.41-7.993c-7.618,0-14.093,2.665-19.417,7.993L169.59,247.248
+		l-83.939-84.225c-5.33-5.33-11.801-7.992-19.412-7.992c-7.616,0-14.087,2.662-19.417,7.992L7.994,201.852
+		C2.664,207.181,0,213.654,0,221.269c0,7.609,2.664,14.088,7.994,19.416l103.351,103.349l38.831,38.828
+		c5.327,5.332,11.8,7.994,19.414,7.994c7.611,0,14.084-2.669,19.414-7.994l38.83-38.828L434.539,137.33
+		c5.325-5.33,7.994-11.802,7.994-19.417C442.537,110.302,439.864,103.829,434.539,98.499z" Fill="#FF2786D5" HorizontalAlignment="Center" Width="70" Height="70" VerticalAlignment="Top" StrokeThickness="0" Stretch="Uniform" Margin="0,60,0,0"/>
+				<TextBlock HorizontalAlignment="Center" Height="59.333" Margin="17.333,124.667,0,0" TextWrapping="Wrap" Text="DNS changing completed!" VerticalAlignment="Top" Foreground="#FF366E9C" FontFamily="Segoe UI Semibold" FontSize="24" SnapsToDevicePixels="True" TextAlignment="Center"/>
+				<Grid x:Name="MessageBoxButton" HorizontalAlignment="Center" Height="28" Margin="0,0,0,20" VerticalAlignment="Bottom" Width="145" Background="#FF2784D2" MouseLeftButtonUp="MessageBoxButton_MouseLeftButtonUp">
+					<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" Text="Okay" Foreground="#FFEAEDEF" TextAlignment="Center" Margin="0,0,0,1"/>
 				</Grid>
 			</Grid>
 		</Grid>

@@ -107,9 +107,10 @@ namespace Hipster_DNS
 
         private void ApplyButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            NetshHandler.SetDns(1, SelectedAdapterTextBlock.Text, ip11.Text + "." + ip12.Text + "." + ip13.Text + "." + ip14.Text);
-            NetshHandler.SetDns(2, SelectedAdapterTextBlock.Text, ip21.Text + "." + ip22.Text + "." + ip23.Text + "." + ip24.Text);
-        
+            //NetshHandler.SetDns(1, SelectedAdapterTextBlock.Text, ip11.Text + "." + ip12.Text + "." + ip13.Text + "." + ip14.Text);
+            //NetshHandler.SetDns(2, SelectedAdapterTextBlock.Text, ip21.Text + "." + ip22.Text + "." + ip23.Text + "." + ip24.Text);
+
+            (this.FindResource("ShowMessageBox") as Storyboard).Begin();
         }
 
         private void ResetButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -196,6 +197,11 @@ namespace Hipster_DNS
                    "this program with administrator rights!");
             }
             this.Close();
+        }
+
+        private void MessageBoxButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            (this.FindResource("HideMessageBox") as Storyboard).Begin();
         }
     }
 }
